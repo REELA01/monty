@@ -1,5 +1,5 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef MON_H
+#define MON_H
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,9 +35,10 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+/*plus*/
 extern stack_t *head;
-typedef void (*op_func)(stack_t **, unsigned int);
+int len_chars(FILE *);
+typedef void (*op_function)(stack_t **, unsigned int);
 /*errall.c*/
 void err_or1(int err_c, ...);
 void err_or2(int err_c, ...);
@@ -47,34 +48,29 @@ void print_stk(stack_t **stk, unsigned int line_n);
 void print_topstk(stack_t **stk, unsigned int line_n);
 void add_to_stk(stack_t **nn, __attribute__((unused))unsigned int lnum);
 void pop_topstk(stack_t **stk, unsigned int line_n);
-/*file operations*/
-void open_file(char *file_name);
-int parse_line(char *buffer, int line_number, int format);
-void read_file(FILE *);
-int len_chars(FILE *);
-void find_func(char *, char *, int, int);
-
-/*Stack operations*/
-stack_t *create_node(int n);
-void free_nodes(void);
-void add_to_queue(stack_t **, unsigned int);
-
-void call_fun(op_func, char *, char *, int, int);
-void nop(stack_t **, unsigned int);
-void swap_nodes(stack_t **, unsigned int);
-
-/*Math operations with nodes*/
-void add_nodes(stack_t **, unsigned int);
-void sub_nodes(stack_t **, unsigned int);
-void div_nodes(stack_t **, unsigned int);
-void mul_nodes(stack_t **, unsigned int);
-void mod_nodes(stack_t **, unsigned int);
-
-/*String operations*/
-void print_char(stack_t **, unsigned int);
-void print_str(stack_t **, unsigned int);
-void rotl(stack_t **, unsigned int);
-/*Error hanlding*/
-void rotr(stack_t **, unsigned int);
-
+/*swnop*/
+void swap_nod(stack_t **stk, unsigned int lnum);
+void nop(stack_t **stk, unsigned int lnum);
+/*basic_cal*/
+void add_func(stack_t **stk, unsigned int lnum);
+void sub_func(stack_t **stk, unsigned int lnum);
+void mul_func(stack_t **stk, unsigned int lnum);
+void div_func(stack_t **stk, unsigned int lnum);
+void mod_func(stack_t **stk, unsigned int lnum);
+/*pcharstr*/
+void p_char(stack_t **stk, unsigned int lnum);
+void p_str(stack_t **stk, __attribute__((unused))unsigned int lnum);
+/*rotate*/
+void rotate_norm(stack_t **stk, __attribute__((unused))unsigned int lnum);
+void rotate_rev(stack_t **stk, __attribute__((unused))unsigned int lnum);
+/*main*/
+void addto_que(stack_t **nn, __attribute__((unused))unsigned int lnum);
+stack_t *make_nod(int number);
+void free_nod(void);
+/*ffunc*/
+void cal_func(op_function func, char *op, char *va, int lnum, int fsp);
+void find_function(char *opc, char *va, int lnum, int form);
+int parse_line(char *buff, int line_n, int form);
+void read_f(FILE *file_d);
+void open_f(char *fname);
 #endif

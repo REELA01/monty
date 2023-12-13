@@ -1,9 +1,11 @@
 #include "mon.h"
+
 stack_t *head = NULL;
+
 /**
  * addto_que - addd node to que
  * @nn: newnode pointer
- * @ln: opcode linenum
+ * @lnum: opcode linenum
 */
 void addto_que(stack_t **nn, __attribute__((unused))unsigned int lnum)
 {
@@ -68,7 +70,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	open_file(argv[1]);
+	open_f(argv[1]);
 	free_nod();
 	return (0);
 }
