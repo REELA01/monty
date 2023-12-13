@@ -62,8 +62,8 @@ void find_function(char *opc, char *va, int lnum, int form)
 		{"mod", mod_func},
 		{"pchar", p_char},
 		{"pstr", p_str},
-		{"rotl", rotate_rev},
-		{"rotr", rotate_norm},
+		{"rotl", rotate_norm},
+		{"rotr", rotate_rev},
 		{NULL, NULL}
 	};
 
