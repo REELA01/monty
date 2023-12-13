@@ -1,4 +1,4 @@
-#include "mon.h"
+#include "monty.h"
 /**
  * err_or1 - handle error of monty
  * @err_c: switch handling erorr in order

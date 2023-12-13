@@ -1,4 +1,4 @@
-#include "mon.h"
+#include "monty.h"
 /**
  * cal_func - call functions
  * @func: desired function pointer

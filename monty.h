@@ -1,12 +1,12 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdarg.h>
-#define _GNU_SOURCE
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -35,9 +35,10 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/*plus*/
 extern stack_t *head;
 int len_chars(FILE *);
-typedef void (*op_func)(stack_t **, unsigned int);
+typedef void (*op_function)(stack_t **, unsigned int);
 /*Stack_1*/
 void print_stk(stack_t **stk, unsigned int line_n);
 void print_topstk(stack_t **stk, unsigned int line_n);
@@ -62,3 +63,14 @@ void p_str(stack_t **stk, __attribute__((unused))unsigned int lnum);
 /*Rotate*/
 void rotate_norm(stack_t **stk, __attribute__((unused))unsigned int lnum);
 void rotate_rev(stack_t **stk, __attribute__((unused))unsigned int lnum);
+/*Ffunc*/
+void cal_func(op_function func, char *op, char *va, int lnum, int fsp);
+void find_function(char *opc, char *va, int lnum, int form);
+int parse_line(char *buff, int line_n, int form);
+void read_f(FILE *file_d);
+void open_f(char *fname);
+/*Errorall*/
+void err_or1(int err_c, ...);
+void err_or2(int err_c, ...);
+void err_or3(int err_c, ...);
+#endif
