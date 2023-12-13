@@ -1,12 +1,12 @@
-#ifndef MON_H
-#define MON_H
-#define _GNU_SOURCE
+#ifndef MONTY_H
+#define MONTY_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdarg.h>
+#define _GNU_SOURCE
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -35,42 +35,30 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-/*plus*/
 extern stack_t *head;
 int len_chars(FILE *);
-typedef void (*op_function)(stack_t **, unsigned int);
-/*errall.c*/
-void err_or1(int err_c, ...);
-void err_or2(int err_c, ...);
-void err_or3(int err_c, ...);
-/*satck_1*/
+typedef void (*op_func)(stack_t **, unsigned int);
+/*Stack_1*/
 void print_stk(stack_t **stk, unsigned int line_n);
 void print_topstk(stack_t **stk, unsigned int line_n);
 void add_to_stk(stack_t **nn, __attribute__((unused))unsigned int lnum);
 void pop_topstk(stack_t **stk, unsigned int line_n);
-/*swnop*/
+/*Main.c*/
+void addto_que(stack_t **nn, __attribute__((unused))unsigned int lnum);
+stack_t *make_nod(int number);
+void free_nod(void);
+/*Swnop.c*/
 void swap_nod(stack_t **stk, unsigned int lnum);
 void nop(stack_t **stk, unsigned int lnum);
-/*basic_cal*/
+/*Basic_cal.c*/
 void add_func(stack_t **stk, unsigned int lnum);
 void sub_func(stack_t **stk, unsigned int lnum);
 void mul_func(stack_t **stk, unsigned int lnum);
 void div_func(stack_t **stk, unsigned int lnum);
 void mod_func(stack_t **stk, unsigned int lnum);
-/*pcharstr*/
+/*Pstrchar*/
 void p_char(stack_t **stk, unsigned int lnum);
 void p_str(stack_t **stk, __attribute__((unused))unsigned int lnum);
-/*rotate*/
+/*Rotate*/
 void rotate_norm(stack_t **stk, __attribute__((unused))unsigned int lnum);
 void rotate_rev(stack_t **stk, __attribute__((unused))unsigned int lnum);
-/*main*/
-void addto_que(stack_t **nn, __attribute__((unused))unsigned int lnum);
-stack_t *make_nod(int number);
-void free_nod(void);
-/*ffunc*/
-void cal_func(op_function func, char *op, char *va, int lnum, int fsp);
-void find_function(char *opc, char *va, int lnum, int form);
-int parse_line(char *buff, int line_n, int form);
-void read_f(FILE *file_d);
-void open_f(char *fname);
-#endif
